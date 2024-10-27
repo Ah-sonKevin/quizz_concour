@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="/functions.js" defer></script>
+    <script src="functions.js"></script>
+<script>
+    window.onload = loadCoursesFromSupabase;
+</script>
     <title>Quiz App</title>
 </head>
 <body>
@@ -12,12 +15,20 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="courses.html">Courses</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
         </ul>
     </nav>
     <div id="content">
         <h1>Welcome to the Quiz App</h1>
-        <p>Select a course to get started.</p>
-        <button onclick="navigateToCourses()">Go to Courses</button>
+        <div class="section">
+            <h2>Courses</h2>
+            <div id="courses-section"></div>
+        </div>
+        <div class="section">
+            <h2>Quiz</h2>
+            <button onclick="navigateToQuiz()">Take a Quiz</button>
+        </div>
     </div>
+    
 </body>
 </html>
