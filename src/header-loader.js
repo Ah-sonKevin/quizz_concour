@@ -10,3 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 });
+
+// Export if needed
+export {};
