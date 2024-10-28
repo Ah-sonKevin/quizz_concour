@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="header-loader.js"></script>
+    <title>Détail du cours</title>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <div id="content">
+        <!-- Add a class for markdown styling -->
+        <div id="course-detail" class="markdown-content"></div>
+        <!-- Add question section -->
+        <div class="question-section">
+            <h3>Des questions sur ce cours ?</h3>
+            <textarea id="user-question" placeholder="Posez votre question ici..."></textarea>
+            <button id="ask-question">Poser la question</button>
+            <div id="gpt-response"></div>
+        </div>
+    </div>
+    <script type="module">
+        import { loadCourseDetail } from './functions.js';
+        window.addEventListener('DOMContentLoaded', loadCourseDetail);
+    </script>
+</body>
+</html>

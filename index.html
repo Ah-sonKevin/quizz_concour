@@ -1,25 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="functions.js"></script>
-<script>
-    window.onload = loadCoursesFromSupabase;
-</script>
+    <script src="header-loader.js"></script>
     <title>Quiz App</title>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="courses.html">Courses</a></li>
-            <li><a href="quiz.html">Quiz</a></li>
-        </ul>
-    </nav>
+    <div id="header-placeholder"></div>
     <div id="content">
         <h1>Welcome to the Quiz App</h1>
+        <div class="section">
+            <h2>Categories</h2>
+            <div id="categories-section" class="categories-grid"></div>
+        </div>
         <div class="section">
             <h2>Courses</h2>
             <div id="courses-section"></div>
@@ -29,6 +21,9 @@
             <button onclick="navigateToQuiz()">Take a Quiz</button>
         </div>
     </div>
-    
+    <script type="module">
+        import { loadCategoriesFromSupabase } from './functions.js';
+        window.addEventListener('DOMContentLoaded', loadCategoriesFromSupabase);
+    </script>
 </body>
 </html>

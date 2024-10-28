@@ -1,0 +1,19 @@
+[build]
+  publish = "/"
+  command = "# no build command needed for static site"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[headers]
+  # Headers to enable PWA
+  for = "/manifest.json"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"
+
+  for = "/service-worker.js"
+    [headers.values]
+    Cache-Control = "no-cache"
+    Access-Control-Allow-Origin = "*"
