@@ -11,12 +11,19 @@
   for = "/manifest.json"
   [headers.values]
     Access-Control-Allow-Origin = "*"
+    Content-Type = "application/json"
 
 [[headers]]
   for = "/service-worker.js"
   [headers.values]
     Cache-Control = "no-cache"
     Access-Control-Allow-Origin = "*"
+    Content-Type = "text/javascript"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Content-Type = "text/javascript"
 
 [build.environment]
   NODE_VERSION = "18"
