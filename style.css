@@ -121,25 +121,115 @@ button:hover {
 /* Quiz styles */
 .question {
     background-color: white;
-    padding: 1.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.question-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #2c3e50;
     margin-bottom: 1.5rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
 }
 
 .options label {
     display: flex;
     align-items: center;
-    padding: 0.8rem;
-    margin: 0.5rem 0;
+    padding: 1rem;
+    margin: 0;
     background-color: #f8f9fa;
-    border-radius: var(--border-radius);
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .options label:hover {
     background-color: #e9ecef;
+    transform: translateX(5px);
+}
+
+.options input[type="checkbox"] {
+    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-color);
+}
+
+.feedback {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    display: none;
+}
+
+.feedback.correct {
+    display: block;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.feedback.incorrect {
+    display: block;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.explanation {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 4px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.course-feedback {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.course-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.course-link:hover {
+    text-decoration: underline;
+}
+
+.quiz-score {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #e3f2fd;
+    border-radius: 8px;
+    color: var(--primary-color);
+}
+
+#load-quiz, #submit-quiz {
+    display: block;
+    width: 200px;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    font-size: 1rem;
 }
 
 /* Course detail page */
