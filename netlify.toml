@@ -7,14 +7,14 @@
   to = "/index.html"
   status = 200
 
-[headers]
-  # Headers to enable PWA
+[[headers]]
   for = "/manifest.json"
-    [headers.values]
+  [headers.values]
     Access-Control-Allow-Origin = "*"
 
+[[headers]]
   for = "/service-worker.js"
-    [headers.values]
+  [headers.values]
     Cache-Control = "no-cache"
     Access-Control-Allow-Origin = "*"
 
