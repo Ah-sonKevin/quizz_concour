@@ -2,12 +2,26 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('/header.html')
         .then(response => response.text())
         .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-            // Set the title if it exists
+            // Parse the HTML content
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(data, 'text/html');
+            
+            // Get head content
+            const headContent = doc.querySelector('head').innerHTML;
+            document.head.insertAdjacentHTML('beforeend', headContent);
+            
+            // Get nav content
+            const navContent = doc.querySelector('nav').outerHTML;
+            document.getElementById('header-placeholder').innerHTML = navContent;
+            
+            // Set the title if it exists in the main document
             const title = document.querySelector('title').textContent;
             if (title) {
-                document.querySelector('#header-placeholder title').textContent = title;
+                document.title = title;
             }
+        })
+        .catch(error => {
+            console.error('Error loading header:', error);
         });
 });
 
