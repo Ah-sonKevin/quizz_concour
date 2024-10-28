@@ -1,71 +1,81 @@
 // functions.js
 
-import { supabase } from './supabase-config.js';
+import { supabasePromise } from './supabase-config.js';
 
 async function loadCategoriesFromSupabase() {
-    const { data: categories, error } = await supabase.from('categories').select('*');
-    if (error) {
-        console.error('Error loading categories:', error);
-        return;
+    try {
+        const supabase = await supabasePromise;
+        const { data: categories, error } = await supabase.from('categories').select('*');
+        if (error) {
+            console.error('Error loading categories:', error);
+            return;
+        }
+        const categoriesSection = document.getElementById('categories-section');
+
+        categories.forEach(category => {
+            const categoryDiv = document.createElement('div');
+            categoryDiv.classList.add('category');
+            categoryDiv.textContent = category.name;
+            categoryDiv.onclick = () => {
+                window.location.href = `courses.html?category_id=${category.id}`;
+            };
+
+            categoriesSection.appendChild(categoryDiv);
+        });
+    } catch (error) {
+        console.error('Error:', error);
     }
-    const categoriesSection = document.getElementById('categories-section');
-
-    categories.forEach(category => {
-        const categoryDiv = document.createElement('div');
-        categoryDiv.classList.add('category');
-        categoryDiv.textContent = category.name;
-        categoryDiv.onclick = () => {
-            window.location.href = `courses.html?category_id=${category.id}`;
-        };
-
-        categoriesSection.appendChild(categoryDiv);
-    });
 }
 
 export { loadCategoriesFromSupabase };
 
 export async function loadCoursesFromSupabase() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const categoryId = urlParams.get('category_id');
-    if (!categoryId) {
-        console.error('No category ID provided');
-        return;
+    try {
+        const supabase = await supabasePromise;
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryId = urlParams.get('category_id');
+        if (!categoryId) {
+            console.error('No category ID provided');
+            return;
+        }
+
+        const { data: courses, error } = await supabase
+            .from('courses')
+            .select('*')
+            .eq('category_id', categoryId);  // Changed from category_id to name_category_id
+        
+        if (error) {
+            console.error('Error loading courses:', error);
+            return;
+        }
+
+        const coursesSection = document.getElementById('courses-section');
+
+        courses.forEach(course => {
+            const courseDiv = document.createElement('div');
+            courseDiv.classList.add('course');
+
+            const courseTitle = document.createElement('h3');
+            courseTitle.textContent = course.name;
+            courseDiv.appendChild(courseTitle);
+
+            const courseDescription = document.createElement('p');
+            courseDescription.textContent = course.description;
+            courseDiv.appendChild(courseDescription);
+
+            // You might want to add a "View Content" button
+            const viewButton = document.createElement('button');
+            viewButton.textContent = 'View Course';
+            viewButton.onclick = () => {
+                window.location.href = `course-detail.html?course_id=${course.id}`;
+            };
+            courseDiv.appendChild(viewButton);
+
+            coursesSection.appendChild(courseDiv);
+        });
+    } catch (error) {
+        console.error('Error:', error);
     }
-
-    const { data: courses, error } = await supabase
-        .from('courses')
-        .select('*')
-        .eq('category_id', categoryId);  // Changed from category_id to name_category_id
-    
-    if (error) {
-        console.error('Error loading courses:', error);
-        return;
-    }
-
-    const coursesSection = document.getElementById('courses-section');
-
-    courses.forEach(course => {
-        const courseDiv = document.createElement('div');
-        courseDiv.classList.add('course');
-
-        const courseTitle = document.createElement('h3');
-        courseTitle.textContent = course.name;
-        courseDiv.appendChild(courseTitle);
-
-        const courseDescription = document.createElement('p');
-        courseDescription.textContent = course.description;
-        courseDiv.appendChild(courseDescription);
-
-        // You might want to add a "View Content" button
-        const viewButton = document.createElement('button');
-        viewButton.textContent = 'View Course';
-        viewButton.onclick = () => {
-            window.location.href = `course-detail.html?course_id=${course.id}`;
-        };
-        courseDiv.appendChild(viewButton);
-
-        coursesSection.appendChild(courseDiv);
-    });
 }
 
 export async function loadCourseDetail() {

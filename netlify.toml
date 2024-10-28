@@ -1,6 +1,6 @@
 [build]
   publish = "/"
-  command = "# no build command needed for static site"
+  command = "npm install"
 
 [[redirects]]
   from = "/*"
@@ -17,3 +17,6 @@
     [headers.values]
     Cache-Control = "no-cache"
     Access-Control-Allow-Origin = "*"
+
+[build.environment]
+  NODE_VERSION = "18"
