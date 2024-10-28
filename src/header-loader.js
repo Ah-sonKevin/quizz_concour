@@ -1,4 +1,12 @@
+function loadCSS() {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/style.css';
+    document.head.appendChild(link);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    loadCSS();
     fetch('/header.html')
         .then(response => response.text())
         .then(data => {
