@@ -1,4 +1,4 @@
-import { config } from './supabase/src/config.js'
+import { config } from './src/config.js'
 
 // Create and export an async function to get the Supabase client
 export async function getSupabaseClient() {

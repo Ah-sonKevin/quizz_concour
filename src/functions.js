@@ -1,6 +1,6 @@
 // functions.js
 
-import { supabasePromise } from '../../supabase-config.js';
+import { supabasePromise } from '../supabase-config.js';
 
 async function loadCategoriesFromSupabase() {
     try {

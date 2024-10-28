@@ -25,5 +25,10 @@
   [headers.values]
     Content-Type = "text/javascript"
 
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Content-Type = "text/css"
+
 [build.environment]
   NODE_VERSION = "18"
