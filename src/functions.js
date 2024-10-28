@@ -1,6 +1,8 @@
 // functions.js
 
 import { supabasePromise } from '../supabase-config.js';
+import { marked } from 'marked';
+
 
 async function loadCategoriesFromSupabase() {
     try {
@@ -86,7 +88,7 @@ export async function loadCourseDetail() {
         console.error('No course ID provided');
         return;
     }
-
+    const supabase = await supabasePromise;
     const { data: course, error } = await supabase
         .from('courses')
         .select('*')
