@@ -4,7 +4,15 @@ export default defineConfig({
     envDir: './',
     envPrefix: 'VITE_',
     build: {
-        outDir: 'dist'
+        outDir: 'dist',
+        rollupOptions: {
+            input: {
+                main: 'index.html',
+                courses: 'courses.html',
+                quiz: 'quiz.html',
+                courseDetail: 'course-detail.html'
+            }
+        }
     },
     server: {
         port: 5501,
